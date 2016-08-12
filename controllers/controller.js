@@ -58,6 +58,7 @@ router.post('/listings', function(req, res) {
     var city = req.body.city;
     var start;
     var end;
+    var activity = req.body.myActivity;
 
     //Determine minimum price point
     if(max === '300'){
@@ -76,9 +77,6 @@ router.post('/listings', function(req, res) {
     //City Specific
     var longitude;
     var latitude;
-
-    var activity = req.body.myActivity;
-    console.log(activity);
 
     //New York
     if(city === 'New York'){
@@ -137,28 +135,24 @@ router.post('/listings', function(req, res) {
     //London
      else{
         if(activity.includes('food') && activity.includes('party')){
-            console.log('park slope');
-            latitude = '40.674857';
-            longitude = '-73.976870';
+            latitude = '51.501495';
+            longitude = '-0.125663';
         }
         else if(activity.includes('tourist') && activity.includes('shopping') && activity.includes('sport')){
-            console.log('times square');
-            latitude = '40.759106';
-            longitude = '-73.984273';
+            latitude = '51.501495';
+            longitude = '-0.125663';
         }
         else if(activity.includes('work') && activity.includes('food') && activity.includes('arts')){
-            console.log('tribeca');
-            latitude = '40.715248';
-            longitude = '-74.007532';
+            latitude = '51.501495';
+            longitude = '-0.125663';
         }
         else if(activity.includes('party') && activity.includes('arts')){
-            console.log('williamsburg');
-            latitude = '40.719621';
-            longitude = '-73.960038';
+            latitude = '51.501495';
+            longitude = '-0.125663';
         }
         else{
-            latitude = '40.715248';
-            longitude = '-74.007532';
+            latitude = '51.501495';
+            longitude = '-0.125663';
         }
     };
 

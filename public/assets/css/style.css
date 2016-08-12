@@ -109,6 +109,7 @@ input, label {
     background-repeat: no-repeat;
     background-attachment: fixed;
     text-align: center;
+    font-family: arial, 'Avant Garde', helvetica, sans-serif;
 }
 
 #result-button{
@@ -125,7 +126,6 @@ input, label {
     line-height: 35px;
     font-size: 15px;
     border: none;
-    font-family: "Roboto", arial, sans-serif;
 }
 
 #result-button:hover{
@@ -134,31 +134,38 @@ input, label {
 }
 
 .result-display {
-    width: 70%;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
-    border: 2px solid black;
+    border: 1px solid black;
     text-align: center;
     margin-bottom: 50px;
     background-color: #fff;
     color: rgba(0,0,0,0.87);
-    font-family: "Roboto", sans-serif;
+    padding-bottom: 10px;
 }
 
 .headline {
     text-align: center;
+    color: black;
 }
 
 .home-photo {
-    border: 1px solid black;
+    border: 1px solid gray;
 }
 
 .result-description {
     padding: 10px;
+    color: gray;
+    text-align: left;
 }
 
 .result-link {
     text-align: center;
     text-decoration: none;
     color: gray;
+}
+
+.result-link:hover{
+    color: #F2871B;
 }
