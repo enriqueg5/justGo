@@ -1,46 +1,42 @@
-
 <div class = "container">
 <div class="row" style="text-align:center">
 <h2 id="formTitle">tell us about your trip!</h2>
 </div>
 	
 	<div class = 'row'>
-			<form class = 'col s12' id = 'personalInfoForm' action='/personal' method='post'>
+		<form class = 'col s12' id = "formBG" action='/listings' method='post'>
 				<div class = 'card-panel'>
 				<h5>Personal Information:</h5>
 					<div class = 'row'>
 						<div class="input-field col s6">
 							<i class="material-icons prefix icon-grey">perm_identity</i>
-							<input id="first_name" type="text" class="validate">
+							<input id="first_name" type="text" name = 'first_name' class="validate">
 		          			<label for="first_name">First Name</label>
 		          		</div>
 		          		<div class="input-field col s6">
 		          			<i class="material-icons prefix icon-grey">perm_identity</i>
-							<input id="last_name" type="text" class="validate">
+							<input id="last_name" type="text" name = 'last_name' class="validate">
 		          			<label for="last_name">Last Name</label>
 		          		</div>
 					</div>
 					<div class = 'row'>
 						<div class = 'input-field col s6'>
 							<i class="material-icons prefix icon-grey">email</i>
-							<input id = 'email' type = 'email' class = 'validate'>
+							<input id = 'email' type = 'email' name = 'email' class = 'validate'>
 							<label for = 'email'>Email</label>
 						</div>
 						<div class = 'input-field col s6'>
 							<i class="material-icons prefix icon-grey">phone</i>
-							<input id = 'phoneNumber' type = 'tel' class = 'validate'>
+							<input id = 'phoneNumber' type = 'tel' name = 'tel' class = 'validate'>
 							<label for = 'phoneNumber'>Phone Number</label>
 						</div>
 					</div>
 				</div>
-			</form>
+			<!--</form> //<- This is the form that when deleted makes the backend work but the front end messes up-->
 	</div>
 
-
-
-
 	<div class = 'row'>
-		<form class = 'col s12' id = "formBG" action='/listings' method='post'>
+		<div class = 'col s12'>
 	   				<div class="card-panel">
 	   				<h5>What are you looking to do while you're visiting <span id=city-name>''</span>?</h5>
 	   				<div class = "row">
@@ -181,11 +177,12 @@
 		   		
 		   	</div>
 		   	<div class = "row" style="text-align:center">
-		   		<button class="btn waves-effect waves-light" id="formSubmit" type="submit" name="action">Submit
+		   		<button class="btn waves-effect waves-light" id="formSubmit" type="submit" name="action" action='submit'
     				<i class="material-icons right">send</i>
   				</button>
   			</div>
-		</form>
+  		</div>
+	</form>
 	</div>
 </div>
 
@@ -209,5 +206,9 @@ $('.datepicker').pickadate({
   });
 </script>
 
-
-
+<script>
+	$('formBG').submit(function(event) {
+    event.preventDefault();
+    console.log($(this).serialize());
+});
+</script>

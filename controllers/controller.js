@@ -5,6 +5,11 @@ var router = express.Router();
 var request = require('request');
 var selection =require('../public/assets/js/cityPicker.js');
 
+var Sequelize = require('sequelize');
+
+// Change database, username, and password
+var sequelize = new Sequelize('users_db', 'root', '151822ea');
+
 //Obtains Athorization for HomeAway API  
 var authorize = {
     method: 'POST',
@@ -48,6 +53,8 @@ router.get('/London', function(req, res, body) {
 
 router.post('/listings', function(req, res) {
     console.log(req.body);
+
+    
    
     //PARAMETERS===================================================
 
@@ -156,6 +163,20 @@ router.post('/listings', function(req, res) {
         }
     };
 
+    //INSERT DATA TO SQL
+
+    sequelize.query("INSERT INTO logs(city, categories) VALUES ('"+city+"', '"+JSON.stringify(activity)+"')");
+    tempInsert = "INSERT INTO users(name, lastname, email, phone, city, createdAt, updatedAt) VALUES ('"+req.body.first_name+"', '"+req.body.last_name+"', '"+req.body.email+"',  '"+req.body.tel+"', '"+req.body.city+"', 'test', 'test')";
+    sequelize.query(sequelize.Utils.format(tempInsert), {__factory:{autoIncrementField: 'id'}, id: '' }, {raw: true});
+
+    //SELECT ALL SEARCHES THAT MATCHED
+    sequelize.query("SELECT * from logs WHERE city = '"+city+"'" , { type: sequelize.QueryTypes.SELECT})
+    .then(function(logs){ 
+        
+        matchCount = logs.length;
+    
+    });
+
     //CREATE SEARCH==================================================
     var search = {
         method: 'GET',
@@ -236,7 +257,8 @@ router.post('/listings', function(req, res) {
                     "<p class='result-description'>" + resultArray[4].description + "</p><br>" +
                     "<a class='result-link' href='" + resultArray[4].listing + "' target='_blank'>" + "View Listing" + "</a></div></div></body></html>";
             }
-        };      
+        };
+       display += "<h1>There are " + matchCount + " people visiting this city for the same reason as you!</h1>";      
        res.send(display);
     });    
 });
